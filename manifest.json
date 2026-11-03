@@ -1,0 +1,37 @@
+{
+  "manifest_version": 3,
+  "name": "BF6 ExperienceManager",
+  "version": "3.14.0",
+  "icons": {
+    "128": "icon.png"
+  },
+  "description": "BF6 Portal plug-in manager.",
+  "minimum_chrome_version": "120",
+  "permissions": [
+    "storage",
+    "windows",
+    "userScripts",
+    "system.display"
+  ],
+  "host_permissions": [
+    "https://portal.battlefield.com/*"
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://portal.battlefield.com/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_idle",
+      "all_frames": true
+    }
+  ]
+}

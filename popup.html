@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Plug-in Manager</title>
+<style>
+html,body{margin:0;width:100%;height:100%;background:#181818;color:#fff;font:13px Arial,sans-serif}body{box-sizing:border-box;padding:14px}h1{font-size:18px;margin:0 0 12px}.sub{color:#aaa;margin-bottom:12px}.warning{display:none;background:#3b2525;border:1px solid #704040;color:#ffd0d0;padding:9px;border-radius:4px;margin-bottom:10px;line-height:1.4}.add{display:flex;gap:6px;margin-bottom:12px}.add input{flex:1;min-width:0;background:#252525;border:1px solid #444;color:#fff;padding:8px;border-radius:3px}.add button,button{background:#2d2d2d;color:#fff;border:1px solid #4a4a4a;border-radius:3px;padding:7px 9px;cursor:pointer}.add button:hover,button:hover{background:#3a3a3a}.status{min-height:18px;margin-bottom:8px;color:#aaa}
+.plugin{display:flex;justify-content:space-between;gap:8px;padding:9px 8px;border-top:1px solid #333;border-radius:4px}
+.plugin.enabled{background:#252525;color:#e8e8e8}.plugin.enabled .name{color:#e8e8e8}.plugin.enabled .meta{color:#aaa}.plugin.disabled{background:#3b3b3b;color:#666}.plugin.disabled .name{color:#666}.plugin.disabled .meta{color:#555}.info{min-width:0}.name{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.meta{font-size:11px;color:#999;margin-top:3px;word-break:break-all}.pluginError{margin-top:6px;padding:5px 7px;background:#4a2424;border:1px solid #7d4545;color:#ffd0d0;border-radius:3px;font-size:11px;line-height:1.35;word-break:break-word}.actions{display:flex;gap:4px;flex-shrink:0;align-items:center}.toggleWrap{display:flex;align-items:center;gap:5px;color:#aaa;font-size:11px;user-select:none}.toggleWrap input{position:absolute;opacity:0;pointer-events:none}.check{width:32px;height:18px;background:#555;border-radius:10px;position:relative;display:inline-block;transition:.15s}.check:after{content:"";position:absolute;width:14px;height:14px;left:2px;top:2px;background:#ddd;border-radius:50%;transition:.15s}.toggleWrap input:checked+.check{background:#777}.toggleWrap input:checked+.check:after{transform:translateX(14px);background:#fff}.danger{color:#ff9a9a}.empty{color:#777;padding:14px 0}
+/* ▼ ドラッグハンドルとGhost項目のスタイル */
+.handle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: #777;
+  cursor: grab;
+  user-select: none;
+  padding: 0 6px 0 2px;
+}
+.handle:hover { color: #fff; }
+.handle:active { cursor: grabbing; }
+.plugin.dragging { opacity: 0.35; }
+.drag-ghost {
+  height: 44px;
+  border: 2px dashed #555;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 4px;
+  margin: 4px 0;
+  box-sizing: border-box;
+}
+/* ▼ おすすめプラグイン用スタイル */
+.recommended-select {
+  width: 100%;
+  background: #252525;
+  border: 1px solid #444;
+  color: #ccc;
+  padding: 7px;
+  border-radius: 3px;
+  margin-bottom: 12px;
+  cursor: pointer;
+}
+.recommended-select:focus {
+  border-color: #666;
+  color: #fff;
+}
+</style>
+</head>
+<body>
+<h1>Plug-in Manager</h1>
+<div class="sub">BF2042 Portal Extensions compatible plug-ins</div>
+<div id="warning" class="warning"></div>
+<div class="add"><input id="url" placeholder="manifest.json URL"><button id="add">Add</button></div>
+<select id="recommended" class="recommended-select">
+  <option value="" selected disabled>お気に入りプラグイン（Favorite Plugins）</option>
+  <option value="https://reni2reni.github.io/BF6_CODESTOCK/manifest.json">BF6_CODESTOCK (reni2)</option>
+  <option value="https://reni2reni.github.io/BlockUtility/manifest.json">BlockUtility (reni2)</option>
+  <option value="https://reni2reni.github.io/Selection_List/manifest.json">Selection_List (reni2)</option>
+  <option value="https://reni2reni.github.io/JapaneseBF6PORTAL/manifest.json">JapaneseBF6 (reni2)</option>
+  <option value="https://andy6170.github.io/Blocky-Unlimited-Variables/manifest.json">
+    Blocky-Unlimited-Variables (andy6170)</option>
+  <option value="https://andy6170.github.io/BF6_Disable_Scroll/manifest.json">BF6_Disable_Scroll (andy6170)</option>
+  <option value="https://the0zzy.github.io/bf2042-portal-navigation-plugin/manifest.json">
+    portal-navigation-plugin (TheOzzy)</option>
+</select>
+<div id="status" class="status"></div>
+<div id="list"></div>
+<script src="popup.js"></script>
+</body>
+</html>
