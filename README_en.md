@@ -120,3 +120,10 @@ Because this extension uses Chrome's `userScripts` API, you must enable user scr
 
 ## Requirements
 * Google Chrome 120 or later
+
+---
+
+## ■ Disclaimer
+The author assumes no responsibility or liability whatsoever for any damages (including, without limitation, loss of data, business interruption, or other financial losses) arising out of the use of or inability to use this software.  
+Furthermore, even if defects or bugs exist in this software, the author shall have no obligation to correct or fix them.  
+Please use this software entirely at your own risk.
